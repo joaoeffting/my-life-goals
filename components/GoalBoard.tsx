@@ -6,6 +6,7 @@ import { initialGoals } from "@/lib/initialGoals";
 import { COLUMNS } from "@/lib/columns";
 import { Goal } from "@/types";
 import GoalColumn from "./GoalColumn";
+import ThemeToggle from "./ThemeToggle";
 
 const GoalBoard: React.FC = () => {
   const [goals, setGoals] = useState<Goal[]>(initialGoals);
@@ -23,8 +24,11 @@ const GoalBoard: React.FC = () => {
   };
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">🎯 Goal Board</h1>
+    <div className="p-4 bg-white dark:bg-black min-h-screen transition-colors">
+      <ThemeToggle />
+      <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+        🎯 Goal Board
+      </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-6">
         {COLUMNS.map((column) => (
           <GoalColumn
