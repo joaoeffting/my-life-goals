@@ -2,26 +2,27 @@
 
 import React, { useState } from "react";
 
-import { initialGoals } from "@/lib/initialGoals";
 import { COLUMNS } from "@/lib/columns";
 import { Goal } from "@/types";
 import GoalColumn from "./GoalColumn";
 import ThemeToggle from "./ThemeToggle";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 const GoalBoard: React.FC = () => {
-  const [goals, setGoals] = useState<Goal[]>(initialGoals);
+  const goals = useQuery(api.goals.getGoals);
 
   const toggleComplete = (id: string) => {
-    setGoals((prev) =>
-      prev.map((goal) =>
-        goal.id === id ? { ...goal, completed: !goal.completed } : goal
-      )
-    );
+    // TODO: Implement toggle complete
   };
 
   const deleteGoal = (id: string) => {
-    setGoals((prev) => prev.filter((goal) => goal.id !== id));
+    // TODO: Implement delete goal
   };
+
+  if (!goals) return <div>Loading goals ... </div>;
+
+  if (goals.length === 0) return <div>No goals found</div>;
 
   return (
     <div className="p-4 bg-white dark:bg-black min-h-screen transition-colors">
