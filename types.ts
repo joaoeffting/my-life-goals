@@ -1,7 +1,9 @@
+import { Id } from "./convex/_generated/dataModel";
+
 export type ColumnId = "day" | "week" | "month" | "year";
 
 export interface Goal {
-  id: string;
+  _id: Id<"goals">;
   text: string;
   column: ColumnId;
   completed: boolean;

@@ -12,17 +12,7 @@ import { api } from "@/convex/_generated/api";
 const GoalBoard: React.FC = () => {
   const goals = useQuery(api.goals.getGoals);
 
-  const toggleComplete = (id: string) => {
-    // TODO: Implement toggle complete
-  };
-
-  const deleteGoal = (id: string) => {
-    // TODO: Implement delete goal
-  };
-
   if (!goals) return <div>Loading goals ... </div>;
-
-  if (goals.length === 0) return <div>No goals found</div>;
 
   return (
     <div className="p-4 bg-white dark:bg-black min-h-screen transition-colors">
@@ -32,13 +22,7 @@ const GoalBoard: React.FC = () => {
       </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-6">
         {COLUMNS.map((column) => (
-          <GoalColumn
-            key={column.id}
-            column={column}
-            goals={goals}
-            toggleComplete={toggleComplete}
-            deleteGoal={deleteGoal}
-          />
+          <GoalColumn key={column.id} column={column} goals={goals} />
         ))}
       </div>
     </div>
